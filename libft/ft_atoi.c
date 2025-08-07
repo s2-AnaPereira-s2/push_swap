@@ -6,7 +6,7 @@
 /*   By: ana-pdos <ana-pdos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 21:00:50 by ana-pdos          #+#    #+#             */
-/*   Updated: 2025/05/19 22:04:36 by ana-pdos         ###   ########.fr       */
+/*   Updated: 2025/08/07 19:10:58 by ana-pdos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	ft_atoi(const char *nbr)
 
 	sign = 1;
 	result = 0;
+
 	while (*nbr)
 	{
 		while (*nbr == ' ' || (*nbr >= 9 && *nbr <= 13))
