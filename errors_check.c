@@ -6,7 +6,7 @@
 /*   By: ana-pdos <ana-pdos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 18:46:26 by ana-pdos          #+#    #+#             */
-/*   Updated: 2025/08/07 19:04:45 by ana-pdos         ###   ########.fr       */
+/*   Updated: 2025/08/11 20:23:46 by ana-pdos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 int	input_isnumber(char *number)
 {
 	int	i;
-	
+
 	i = 0;
+	if (number[i] == '+' || number[i] == '-')
+		i++;
+	if (number[i] == '\0')
+		return (0);
 	while (number[i])
 	{
-		if (number[i] == '-' || (number[i] >= '0' && number[i] <= '9'))
-			i++;
-		else 
-			return (1);
+		if (number[i] < '0' || number[i] > '9')
+            return (0);
+        i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	repeat_number(t_ps *ps)
@@ -34,35 +37,49 @@ int	repeat_number(t_ps *ps)
 	int	temp;
 
 	i = 0;
-	while (ps->stack_a[i])
+	while (i < ps->size)
 	{
 		temp = ps->stack_a[i];
 		j = 0;
-		while (ps->stack_a[j])
+		while (j < ps->size)
 		{
 			if (temp == ps->stack_a[j] && i != j)
-				return (1);
+				return (0);
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
-int isMax_isMin(t_ps *ps)
+int	number_check(const char *nbr)
 {
-    int i;
-    
-    i = 0;
-    while (ps->stack_a[i])
-    {
-        ft_printf("%d - %s\n", ps->stack_a[i], "I was here");
-        if (ps->stack_a[i] > 2147483647 || ps->stack_a[i] < -2147483648)
-        {
-            ft_printf("%s\n", "I was here");
-            return (1);
-        }    
-        i++;
-    }
-    return (0);
+	long	result;
+	int	sign;
+	int digit;
+
+	sign = 1;
+	result = 0;
+	while (*nbr)
+	{
+		while ((*nbr >= 9 && *nbr <= 13))
+			nbr++;
+		if (*nbr == '+' || *nbr == '-')
+		{
+			if (*nbr == '-')
+				sign = -1;
+			nbr++;
+			if (!(*nbr >= '0' && *nbr <= '9'))
+				return (0);
+		}
+		while (*nbr >= '0' && *nbr <= '9')
+		{
+			digit = *nbr - '0';
+			result = result * 10 + digit;
+			if ((sign == 1 && result > INT_MAX) || (sign == -1 && -result < INT_MIN))
+				return (0);
+			nbr++;
+		}
+	}
+	return (1);
 }

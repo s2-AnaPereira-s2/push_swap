@@ -6,7 +6,7 @@
 /*   By: ana-pdos <ana-pdos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 10:30:56 by ana-pdos          #+#    #+#             */
-/*   Updated: 2025/07/31 18:22:42 by ana-pdos         ###   ########.fr       */
+/*   Updated: 2025/08/13 21:50:52 by ana-pdos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	ft_hex_convert_lower(unsigned int number)
 	while (index >= 0)
 		hex_num[i++] = temp[index--];
 	hex_num[i] = '\0';
-	ft_putstr_PF(hex_num);
+	ft_putstr_pf(hex_num);
 	return (i);
 }

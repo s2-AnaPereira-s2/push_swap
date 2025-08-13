@@ -6,7 +6,7 @@
 /*   By: ana-pdos <ana-pdos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 18:19:25 by ana-pdos          #+#    #+#             */
-/*   Updated: 2025/07/31 18:21:31 by ana-pdos         ###   ########.fr       */
+/*   Updated: 2025/08/13 21:53:26 by ana-pdos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include "get_next_line.h"
 
-int	ft_strlen_GNL(char *s)
+int	ft_strlen_gnl(char *s)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ int	ft_strlen_GNL(char *s)
 	return (i);
 }
 
-char	*ft_strjoin_GNL(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char	*ns;
 	int		i;
@@ -34,7 +34,7 @@ char	*ft_strjoin_GNL(char *s1, char *s2)
 
 	if (!s1 && !s2)
 		return (NULL);
-	ns = malloc((ft_strlen_GNL(s2) + ft_strlen_GNL(s1) + 1) * sizeof(char));
+	ns = malloc((ft_strlen_gnl(s2) + ft_strlen_gnl(s1) + 1) * sizeof(char));
 	if (!ns)
 		return (NULL);
 	i = 0;
@@ -51,14 +51,14 @@ char	*ft_strjoin_GNL(char *s1, char *s2)
 	return (ns);
 }
 
-char	*ft_substr_GNL(char *s, int start, int len)
+char	*ft_substr_gnl(char *s, int start, int len)
 {
 	char	*substr;
 	int		i;
 
 	if (!s)
 		return (NULL);
-	if (start >= ft_strlen_GNL(s))
+	if (start >= ft_strlen_gnl(s))
 	{
 		substr = malloc(1 * sizeof(char));
 		if (!substr)
@@ -66,8 +66,8 @@ char	*ft_substr_GNL(char *s, int start, int len)
 		substr[0] = '\0';
 		return (substr);
 	}
-	if (len > ft_strlen_GNL(s) - start)
-		len = ft_strlen_GNL(s) - start;
+	if (len > ft_strlen_gnl(s) - start)
+		len = ft_strlen_gnl(s) - start;
 	substr = malloc((len + 1) * sizeof(char));
 	if (!substr)
 		return (NULL);
@@ -78,7 +78,7 @@ char	*ft_substr_GNL(char *s, int start, int len)
 	return (substr);
 }
 
-char	*ft_strdup_GNL(char *s)
+char	*ft_strdup_gnl(char *s)
 {
 	char	*src_c;
 	int		i;

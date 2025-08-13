@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putunbr_pf.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ana-pdos <ana-pdos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 17:13:44 by ana-pdos          #+#    #+#             */
-/*   Updated: 2025/07/21 15:36:56 by ana-pdos         ###   ########.fr       */
+/*   Created: 2025/06/04 19:30:49 by ana-pdos          #+#    #+#             */
+/*   Updated: 2025/08/13 21:56:38 by ana-pdos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <unistd.h>
-#include <stdio.h>
 
-int	ft_putstr_PF(char *s)
+static int	ft_unsigned_length(unsigned int n)
 {
-	int	i;
+	int	count;
 
-	if (!s)
-		return (write(1, "(null)", 6));
-	i = 0;
-	while (s[i] != '\0')
+	count = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
 	{
-		write(1, &s[i], 1);
-		i++;
+		n /= 10;
+		count++;
 	}
-	return (i);
+	return (count);
+}
+
+int	ft_putunbr_pf(unsigned int n)
+{
+	char	c;
+
+	if (n > 9)
+		ft_putunbr_pf(n / 10);
+	c = (n % 10) + '0';
+	write(1, &c, 1);
+	return (ft_unsigned_length(n));
 }

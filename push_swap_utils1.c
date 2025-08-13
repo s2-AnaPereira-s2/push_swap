@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   push_swap_utils1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ana-pdos <ana-pdos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/07 18:51:44 by ana-pdos          #+#    #+#             */
-/*   Updated: 2025/08/07 18:54:28 by ana-pdos         ###   ########.fr       */
+/*   Created: 2025/08/12 12:37:22 by ana-pdos          #+#    #+#             */
+/*   Updated: 2025/08/13 21:37:28 by ana-pdos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	linked_list(t_ps *ps)
 		temp = malloc(sizeof(int));
 		*temp = ps->stack_a[i];
 		new = ft_lstnew(temp);
+		if (!new)
+		{
+			free(temp);
+			free_lists(ps);
+			return ;
+		}
 		ft_lstadd_back(&ps->a, new);
 		i++;
 	}
@@ -41,22 +47,20 @@ int	numbers_array(t_ps *ps, char **argv)
 	while(argv[i])
 	{
 		number = ft_split(argv[i], ' ');
+		if (!number[0])
+			return (free_split(number), 0);
 		j = 0;
 		while(number[j])
 		{
-			if (!input_isnumber(number[j]))
-			{
-				ps->stack_a[c] = ft_atoi(number[j]);
-				j++;
-				c++;
-			}
-			else
-				return (free_split(number), 1);
+			if (number[j][0] == '\0' || !input_isnumber(number[j]) 
+				|| !number_check(number[j]))
+				return (free_split(number), 0);
+			ps->stack_a[c++] = ft_atoi(number[j++]);
 		}
 		free_split(number);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 void	ps_size(t_ps *ps, char **argv)
@@ -70,6 +74,13 @@ void	ps_size(t_ps *ps, char **argv)
 	while(argv[i])
 	{
 		number = ft_split(argv[i], ' ');
+		if (!number)
+			return ;
+		if (!number[0])
+		{
+			free_split(number);
+			return ;
+		}
 		j = 0;
 		while(number[j])
 		{
@@ -80,3 +91,4 @@ void	ps_size(t_ps *ps, char **argv)
 		i++;
 	}
 }
+

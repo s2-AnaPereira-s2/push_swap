@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunbr_PF.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_pf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ana-pdos <ana-pdos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/04 19:30:49 by ana-pdos          #+#    #+#             */
-/*   Updated: 2025/07/31 18:30:48 by ana-pdos         ###   ########.fr       */
+/*   Created: 2025/06/03 17:16:34 by ana-pdos          #+#    #+#             */
+/*   Updated: 2025/08/13 21:56:11 by ana-pdos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <unistd.h>
 
-static int	ft_unsigned_length(unsigned int n)
+int	ft_putnbr_pf(int n)
 {
-	int	count;
+	char	number;
+	int		count;
+	long	nb;
 
+	nb = (long)n;
 	count = 0;
-	if (n == 0)
-		return (1);
-	while (n != 0)
+	if (nb < 0)
 	{
-		n /= 10;
-		count++;
+		count += write (1, "-", 1);
+		nb = -nb;
 	}
+	if (nb > 9)
+		count += ft_putnbr_pf(nb / 10);
+	number = (nb % 10) + '0';
+	count += write (1, &number, 1);
 	return (count);
-}
-
-int	ft_putunbr_PF(unsigned int n)
-{
-	char	c;
-
-	if (n > 9)
-		ft_putunbr_PF(n / 10);
-	c = (n % 10) + '0';
-	write(1, &c, 1);
-	return (ft_unsigned_length(n));
 }

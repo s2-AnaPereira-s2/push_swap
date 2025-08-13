@@ -6,7 +6,7 @@
 #    By: ana-pdos <ana-pdos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/13 21:15:09 by ana-pdos          #+#    #+#              #
-#    Updated: 2025/07/31 18:31:41 by ana-pdos         ###   ########.fr        #
+#    Updated: 2025/08/13 21:52:13 by ana-pdos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ GNL_SRCS = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
 PRINTF_DIR = ft_printf
 PRINTF_SRCS = $(PRINTF_DIR)/ft_printf.c $(PRINTF_DIR)/ft_hex_convert_lower.c \
 	    $(PRINTF_DIR)/ft_hex_convert_upper.c $(PRINTF_DIR)/ft_hex_convert_p.c \
-	    $(PRINTF_DIR)/ft_putnbr_PF.c $(PRINTF_DIR)/ft_putstr_PF.c $(PRINTF_DIR)/ft_putchar_PF.c \
-		$(PRINTF_DIR)/ft_putunbr_PF.c
+	    $(PRINTF_DIR)/ft_putnbr_pf.c $(PRINTF_DIR)/ft_putstr_pf.c $(PRINTF_DIR)/ft_putchar_pf.c \
+		$(PRINTF_DIR)/ft_putunbr_pf.c
 CFILES = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 	 ft_isascii.c ft_isdigit.c ft_isprint.c ft_memchr.c ft_memcmp.c \
 	 ft_memcpy.c ft_memmove.c ft_memset.c ft_split.c ft_strrchr.c \

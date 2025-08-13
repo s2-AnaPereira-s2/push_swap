@@ -6,7 +6,7 @@
 /*   By: ana-pdos <ana-pdos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 10:10:09 by ana-pdos          #+#    #+#             */
-/*   Updated: 2025/08/07 19:00:17 by ana-pdos         ###   ########.fr       */
+/*   Updated: 2025/08/13 19:44:38 by ana-pdos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,17 @@ int	main(int argc, char **argv)
 	t_ps	ps;
 
 	if (argc == 1)
-		return (1);
+		return (0);
 	ps.a = NULL;
+	ps.b = NULL;
 	ps_size(&ps, argv);
 	ps.stack_a = malloc((ps.size) * sizeof(int));
-	numbers_array(&ps, argv);
-	if (numbers_array(&ps, argv) || repeat_number(&ps) || isMax_isMin(&ps))
-		return (ft_printf("%s\n", "Error"), 1);
+	if (!numbers_array(&ps, argv) || !repeat_number(&ps))
+		return (ft_putstr_fd("Error\n", 2), free(ps.stack_a), 0);
 	linked_list(&ps);
-	if (ps.size <= 5)
-		hard_sort(&ps);
-	return (0);
+	put_index(&ps);
+	if (ps.size < 6)
+		return (hard_sort(&ps), free(ps.stack_a), free_lists(&ps), 1);
+	radix_sort(&ps);
+	return (free(ps.stack_a), free_lists(&ps), 1);
 }
